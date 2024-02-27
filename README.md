@@ -10,21 +10,35 @@ SCL             A5
 SDA             A4
 VDD             5 V
 GND             GND
+AD0             GND
 
 ```
+<img src="https://www.mathworks.com/help/examples/shared_fusion_arduinoio/win64/EstimateOrientationUsingInertialSensorFusionAndMPU9250Example_01.png" alt="Estimate Orientation Using Inertial Sensor Fusion and MPU9250 Example" width="300" height="300">
 
+## ROS Installations
+
+```
+sudo apt-get install ros-<ros_version>-rosserial-arduino
+sudo apt-get install ros-<ros_version>-rosserial
+sudo apt-get install ros-<ros_version>-imu-complementary-filter*
+
+```
 ## Arduino Libraries
 
-Install ros_lib library to your IDE library directory
+1- Install ros_lib library to your IDE library directory
 ```
 cd <sketchbook>/libraries
 rm -rf ros_lib
 rosrun rosserial_arduino make_libraries.py .
 ```
 
+2- copy folder **library/MPU9250-master** into your Arduino libraries directory to use the library of ``` #include "MPU9250.h" ``` in your Arduino code
+> **Note:** Make sure you put it in the correct directory.
+
 ## Code Execution
-### arduino.launch
-arduino node that publishes "/imu/data_raw" message that doesn't have orientation data
+### Arduino.launch
+Arduino node that publishes "/imu/data_raw" message that doesn't have orientation data
+
 ```
 roslaunch mpu9250_ros_driver arduino.launch
 ```
